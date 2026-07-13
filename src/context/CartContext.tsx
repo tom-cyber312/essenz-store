@@ -1,4 +1,4 @@
-﻿import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+﻿import { createContext, useContext, useState, useEffect, useCallback, useMemo, type ReactNode } from "react";
 
 interface CartItem {
   id: number;
@@ -65,29 +65,31 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems([]);
   }, []);
 
-  const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
-  const totalPrice = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const totalItems = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
+  const totalPrice = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items]);
 
   const checkoutViaWhatsApp = useCallback(() => {
     if (items.length === 0) return;
-    
-    const phoneNumber = "543496510669"; // Essenz WhatsApp number
-    
+
+    const phoneNumber = "543496510669";
+
     let message = "¡Hola! Quiero hacer el siguiente pedido:\n\n";
     items.forEach((item, index) => {
       message += `${index + 1}. ${item.name} x ${item.quantity} = $${(item.price * item.quantity).toLocaleString("es-AR")}\n`;
     });
     message += `\nTotal: $${totalPrice.toLocaleString("es-AR")}\n\n`;
     message += "Mis datos:\n- Nombre:\n- Dirección:\n- Localidad:\n- Código Postal:";
-    
+
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   }, [items, totalPrice]);
 
+  const value = useMemo(() => ({
+    items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, checkoutViaWhatsApp
+  }), [items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, checkoutViaWhatsApp]);
+
   return (
-    <CartContext.Provider
-      value={{ items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, checkoutViaWhatsApp }}
-    >
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   );

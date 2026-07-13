@@ -1,6 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
-
-const productImages = [
+﻿const productImages = [
   "https://d22fxaf9t8d39k.cloudfront.net/7e991328d85fca96e1cc838b4ca2a32b48ebc2b905fa64d00d43659846343ab6441455.jpg",
   "https://d22fxaf9t8d39k.cloudfront.net/a145b02f4b336d1252003cd8379b61f9d56c2ff794f87635de667602aa7bafc7441455.jpg",
   "https://d22fxaf9t8d39k.cloudfront.net/8c4a619de82213f5b31a3d347f96eb2ee581baa382403438f5f3bfe309783060441455.png",
@@ -28,33 +26,21 @@ const productImages = [
 ];
 
 export default function MarqueeSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const row1 = productImages.slice(0, 15);
-  const row2 = productImages.slice(15);
-  const tripledRow1 = [...row1, ...row1, ...row1];
-  const tripledRow2 = [...row2, ...row2, ...row2];
-
-  const sectionTop = sectionRef.current?.offsetTop ?? 0;
+  const row1 = productImages.slice(0, 12);
+  const row2 = productImages.slice(12);
+  const doubledRow1 = [...row1, ...row1, ...row1, ...row1];
+  const doubledRow2 = [...row2, ...row2, ...row2, ...row2];
 
   return (
-    <section ref={sectionRef} className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
+    <section className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
       <div className="overflow-hidden mb-3">
         <div
           className="flex gap-3"
           style={{
-            transform: `translateX(${(scrollY - sectionTop + window.innerHeight) * 0.3}px)`,
-            willChange: "transform",
+            transform: "translateX(-8%)",
           }}
         >
-          {tripledRow1.map((url, i) => (
+          {doubledRow1.map((url, i) => (
             <img
               key={i}
               src={url}
@@ -69,11 +55,10 @@ export default function MarqueeSection() {
         <div
           className="flex gap-3"
           style={{
-            transform: `translateX(${-(scrollY - sectionTop + window.innerHeight) * 0.3}px)`,
-            willChange: "transform",
+            transform: "translateX(-8%)",
           }}
         >
-          {tripledRow2.map((url, i) => (
+          {doubledRow2.map((url, i) => (
             <img
               key={i}
               src={url}

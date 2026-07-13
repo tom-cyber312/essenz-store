@@ -18,7 +18,7 @@ function App() {
         <HeroSection />
         <MarqueeSection />
         <AboutSection />
-        <ProductsSection />
+        <ProductsSection onAddToCart={() => setCartOpen(true)} />
       </main>
       <Footer />
     </div>

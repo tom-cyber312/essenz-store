@@ -8,7 +8,11 @@ import { ShoppingCart } from "lucide-react";
 
 const categories = ["Todos", ...Array.from(new Set(products.map((p) => p.category)))];
 
-export default function ProductsSection() {
+interface Props {
+  onAddToCart?: () => void;
+}
+
+export default function ProductsSection({ onAddToCart }: Props) {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const { addItem } = useCart();
 
@@ -75,7 +79,7 @@ export default function ProductsSection() {
                 </div>
                 <p className="text-[#D7E2EA]/40 text-xs">Transferencia / Efectivo</p>
                 <button
-                  onClick={() => addItem({ id: product.id, name: product.name, price: product.discountPrice, image: product.image })}
+                  onClick={() => { addItem({ id: product.id, name: product.name, price: product.discountPrice, image: product.image }); onAddToCart?.(); }}
                   className="w-full mt-2 py-2.5 rounded-full font-medium uppercase tracking-wider text-white text-xs flex items-center justify-center gap-2"
                   style={{
                     background: "linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)",
