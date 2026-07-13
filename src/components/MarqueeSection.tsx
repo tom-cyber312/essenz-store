@@ -1,4 +1,6 @@
-﻿const productImages = [
+﻿import { useEffect, useRef, useState } from "react";
+
+const productImages = [
   "https://d22fxaf9t8d39k.cloudfront.net/7e991328d85fca96e1cc838b4ca2a32b48ebc2b905fa64d00d43659846343ab6441455.jpg",
   "https://d22fxaf9t8d39k.cloudfront.net/a145b02f4b336d1252003cd8379b61f9d56c2ff794f87635de667602aa7bafc7441455.jpg",
   "https://d22fxaf9t8d39k.cloudfront.net/8c4a619de82213f5b31a3d347f96eb2ee581baa382403438f5f3bfe309783060441455.png",
@@ -26,21 +28,40 @@
 ];
 
 export default function MarqueeSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [sectionTop, setSectionTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      if (sectionRef.current) {
+        setSectionTop(sectionRef.current.offsetTop);
+      }
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const row1 = productImages.slice(0, 12);
   const row2 = productImages.slice(12);
-  const doubledRow1 = [...row1, ...row1, ...row1, ...row1];
-  const doubledRow2 = [...row2, ...row2, ...row2, ...row2];
+  const quintupledRow1 = [...row1, ...row1, ...row1, ...row1, ...row1];
+  const quintupledRow2 = [...row2, ...row2, ...row2, ...row2, ...row2];
+
+  const offset = scrollY - sectionTop + window.innerHeight;
 
   return (
-    <section className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
+    <section ref={sectionRef} className="bg-[#0C0C0C] pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
       <div className="overflow-hidden mb-3">
         <div
           className="flex gap-3"
           style={{
-            transform: "translateX(-8%)",
+            transform: `translateX(${-offset * 0.2 - 200}px)`,
+            willChange: "transform",
           }}
         >
-          {doubledRow1.map((url, i) => (
+          {quintupledRow1.map((url, i) => (
             <img
               key={i}
               src={url}
@@ -55,10 +76,11 @@ export default function MarqueeSection() {
         <div
           className="flex gap-3"
           style={{
-            transform: "translateX(-8%)",
+            transform: `translateX(${offset * 0.1 - 200}px)`,
+            willChange: "transform",
           }}
         >
-          {doubledRow2.map((url, i) => (
+          {quintupledRow2.map((url, i) => (
             <img
               key={i}
               src={url}
