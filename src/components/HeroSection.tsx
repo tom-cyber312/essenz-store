@@ -30,9 +30,9 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center gap-6 px-4">
         <FadeIn delay={0} y={40}>
           <img
-            src="https://d22fxaf9t8d39k.cloudfront.net/26554f4feeb98f466e5d8ab32299222ea3a5dd7e0daf68f224bedef0792c9b4e441455.png"
+            src="/logo.png"
             alt="Essenz"
-            className="h-16 md:h-24 w-auto mb-4"
+            className="h-20 md:h-28 w-auto mb-4"
           />
         </FadeIn>
 
