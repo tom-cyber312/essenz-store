@@ -71,7 +71,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const checkoutViaWhatsApp = useCallback(() => {
     if (items.length === 0) return;
     
-    const phoneNumber = "543496653146"; // Essenz WhatsApp number
+    const phoneNumber = "543496510669"; // Essenz WhatsApp number
     
     let message = "¡Hola! Quiero hacer el siguiente pedido:\n\n";
     items.forEach((item, index) => {

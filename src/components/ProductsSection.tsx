@@ -53,11 +53,11 @@ export default function ProductsSection() {
         {filtered.map((product, index) => (
           <FadeIn key={product.id} delay={index * 0.05} y={30}>
             <div className="bg-[#1a1a1a] rounded-2xl overflow-hidden group hover:bg-[#222] transition-colors duration-300">
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden bg-[#111] flex items-center justify-center">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-64 object-contain p-2 group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
               </div>
