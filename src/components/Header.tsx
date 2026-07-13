@@ -18,7 +18,7 @@ export default function Header({ onCartClick }: HeaderProps) {
         <nav className="flex items-center justify-between h-16 md:h-20">
           <a href="#" className="flex-shrink-0">
             <img
-              src="https://d22fxaf9t8d39k.cloudfront.net/26554f4feeb98f466e5d8ab32299222ea3a5dd7e0daf68f224bedef0792c9b4e441455.png"
+              src="/logo.png"
               alt="Essenz"
               className="h-8 md:h-10 w-auto"
             />
