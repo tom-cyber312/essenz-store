@@ -32,7 +32,7 @@ export default function HeroSection() {
           <img
             src="/logo.png"
             alt="Essenz"
-            className="h-28 md:h-40 w-auto mb-6"
+            className="h-36 md:h-52 w-auto mb-6"
           />
         </FadeIn>
 

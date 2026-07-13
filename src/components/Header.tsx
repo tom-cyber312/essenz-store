@@ -20,7 +20,7 @@ export default function Header({ onCartClick }: HeaderProps) {
             <img
               src="/logo.png"
               alt="Essenz"
-              className="h-14 md:h-20 w-auto"
+              className="h-8 md:h-12 w-auto"
             />
           </a>
 
