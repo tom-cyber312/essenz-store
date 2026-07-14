@@ -16,7 +16,9 @@ export default function ProductsSection({ onAddToCart }: Props) {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const { addItem } = useCart();
 
-  const filtered = activeCategory === "Todos" ? products : products.filter((p) => p.category === activeCategory);
+  const filtered = activeCategory === "Todos"
+    ? [...products].sort((a, b) => a.category.localeCompare(b.category))
+    : products.filter((p) => p.category === activeCategory);
 
   return (
     <section id="productos" className="bg-[#0C0C0C] px-5 py-20 sm:px-8 md:px-10 md:py-32">
