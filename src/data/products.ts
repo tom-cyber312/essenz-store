@@ -9,6 +9,7 @@
 }
 
 export const products: Product[] = [
+  // 81 productos
   {id:1,name:"LATTAFA ASAD ELIXIR 100ml",price:61999,discountPrice:58899.05,image:"https://d22fxaf9t8d39k.cloudfront.net/7e991328d85fca96e1cc838b4ca2a32b48ebc2b905fa64d00d43659846343ab6441455.jpg",category:"Perfumes Árabes Masculinos",description:"Perfume árabe masculino de la marca Lattafa. Aroma intenso y duradero."},
   {id:2,name:"Perfume Fragrance World Urban Man Le Parfum Edp 90ml Hombre",price:52499,discountPrice:49874.05,image:"https://d22fxaf9t8d39k.cloudfront.net/a145b02f4b336d1252003cd8379b61f9d56c2ff794f87635de667602aa7bafc7441455.jpg",category:"Perfumes Árabes Masculinos",description:"Fragancia masculina moderna y sofisticada."},
   {id:3,name:"Lattafa Asad black 100ml Edp",price:50000,discountPrice:47500,image:"https://d22fxaf9t8d39k.cloudfront.net/8c4a619de82213f5b31a3d347f96eb2ee581baa382403438f5f3bfe309783060441455.png",category:"Perfumes Árabes Masculinos",description:"Perfume negro intenso de Lattafa con toques amaderados."},
