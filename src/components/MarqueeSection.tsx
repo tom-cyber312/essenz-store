@@ -67,7 +67,7 @@ export default function MarqueeSection() {
               src={url}
               alt=""
               loading="lazy"
-              className="w-[420px] h-[270px] rounded-2xl object-cover shrink-0"
+              className="w-[420px] h-[270px] rounded-2xl object-contain bg-[#111] shrink-0"
             />
           ))}
         </div>
@@ -86,7 +86,7 @@ export default function MarqueeSection() {
               src={url}
               alt=""
               loading="lazy"
-              className="w-[420px] h-[270px] rounded-2xl object-cover shrink-0"
+              className="w-[420px] h-[270px] rounded-2xl object-contain bg-[#111] shrink-0"
             />
           ))}
         </div>
