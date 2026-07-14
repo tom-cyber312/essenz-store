@@ -1,4 +1,4 @@
-﻿import { createContext, useContext, useState, useEffect, useCallback, useMemo, type ReactNode } from "react";
+﻿import { createContext, useContext, useReducer, useEffect, type ReactNode } from "react";
 
 interface CartItem {
   id: number;
@@ -21,72 +21,82 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | null>(null);
 
+type Action =
+  | { type: "ADD"; product: Omit<CartItem, "quantity"> }
+  | { type: "REMOVE"; id: number }
+  | { type: "UPDATE_QTY"; id: number; quantity: number }
+  | { type: "CLEAR" }
+  | { type: "HYDRATE"; items: CartItem[] };
+
+function cartReducer(state: CartItem[], action: Action): CartItem[] {
+  switch (action.type) {
+    case "ADD": {
+      const existing = state.find((i) => i.id === action.product.id);
+      if (existing) {
+        return state.map((i) =>
+          i.id === action.product.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+      return [...state, { ...action.product, quantity: 1 }];
+    }
+    case "REMOVE":
+      return state.filter((i) => i.id !== action.id);
+    case "UPDATE_QTY":
+      if (action.quantity <= 0) {
+        return state.filter((i) => i.id !== action.id);
+      }
+      return state.map((i) =>
+        i.id === action.id ? { ...i, quantity: action.quantity } : i
+      );
+    case "CLEAR":
+      return [];
+    default:
+      return state;
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => {
+  const [items, dispatch] = useReducer(cartReducer, null, () => {
     try {
       const saved = localStorage.getItem("essenz-cart");
-      return saved ? JSON.parse(saved) : [];
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
     } catch {
-      return [];
+      // ignore
     }
+    return [];
   });
 
   useEffect(() => {
     localStorage.setItem("essenz-cart", JSON.stringify(items));
   }, [items]);
 
-  const addItem = useCallback((product: Omit<CartItem, "quantity">) => {
-    setItems((prev) => {
-      const existing = prev.find((i) => i.id === product.id);
-      if (existing) {
-        return prev.map((i) =>
-          i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  }, []);
+  const addItem = (product: Omit<CartItem, "quantity">) => dispatch({ type: "ADD", product });
+  const removeItem = (id: number) => dispatch({ type: "REMOVE", id });
+  const updateQuantity = (id: number, quantity: number) => dispatch({ type: "UPDATE_QTY", id, quantity });
+  const clearCart = () => dispatch({ type: "CLEAR" });
 
-  const removeItem = useCallback((id: number) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
-  }, []);
+  const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
+  const totalPrice = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
-  const updateQuantity = useCallback((id: number, quantity: number) => {
-    if (quantity <= 0) {
-      removeItem(id);
-      return;
-    }
-    setItems((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, quantity } : i))
-    );
-  }, [removeItem]);
-
-  const clearCart = useCallback(() => {
-    setItems([]);
-  }, []);
-
-  const totalItems = useMemo(() => items.reduce((sum, i) => sum + i.quantity, 0), [items]);
-  const totalPrice = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items]);
-
-  const checkoutViaWhatsApp = useCallback(() => {
+  const checkoutViaWhatsApp = () => {
     if (items.length === 0) return;
-
     const phoneNumber = "543496510669";
-
     let message = "¡Hola! Quiero hacer el siguiente pedido:\n\n";
     items.forEach((item, index) => {
       message += `${index + 1}. ${item.name} x ${item.quantity} = $${(item.price * item.quantity).toLocaleString("es-AR")}\n`;
     });
     message += `\nTotal: $${totalPrice.toLocaleString("es-AR")}\n\n`;
     message += "Mis datos:\n- Nombre:\n- Dirección:\n- Localidad:\n- Código Postal:";
-
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
-  }, [items, totalPrice]);
+  };
 
-  const value = useMemo(() => ({
+  const value: CartContextType = {
     items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, checkoutViaWhatsApp
-  }), [items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, checkoutViaWhatsApp]);
+  };
 
   return (
     <CartContext.Provider value={value}>
