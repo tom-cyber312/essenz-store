@@ -46,8 +46,8 @@
               <a href="mailto:essenzz.ar@gmail.com" className="text-[#D7E2EA] hover:opacity-70 transition">
                 essenzz.ar@gmail.com
               </a>
-              <a href="tel:3496653146" className="text-[#D7E2EA] hover:opacity-70 transition">
-                3496653146
+              <a href="tel:3496510669" className="text-[#D7E2EA] hover:opacity-70 transition">
+                3496510669
               </a>
               <a href="#regret-modal" className="text-[#D7E2EA] underline hover:no-underline text-sm mt-2">
                 Botón de arrepentimiento
