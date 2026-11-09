@@ -57,11 +57,11 @@ export const products: Product[] = [
   {id:49,name:"FLAMENGO TITULAR 2026 Adidas Heatrdy",price:47500,discountPrice:45125,image:"/images/flamengo.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Flamengo titular 2026 Adidas Heatrdy."},
   {id:50,name:"ATLÉTICO MADRID 2026 Nike DRIFIT Mangas larga",price:49999,discountPrice:47499.05,image:"/images/atletico.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Atlético Madrid 2026 Nike DRIFIT manga larga."},
   {id:51,name:"REAL MADRID TITULAR 2026 Adidas Climacool Mangas larga",price:49999,discountPrice:47499.05,image:"/images/real-madrid.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Real Madrid titular 2026 Adidas Climacool manga larga."},
-  {id:52,name:"CLUB DE NUIT MAN INTENSE 100ml Edt",price:61999,discountPrice:58899.05,image:"/images/cdn-intense.jpg",category:"Perfumes Árabes Masculinos",description:"Club de Nuit Man Intense, aroma fresco y duradero."},
+  
   {id:53,name:"LATTAFA BADEE AL OUD FOR GLORY 100ml Edp",price:55999,discountPrice:53199.05,image:"/images/for-glory.jpg",category:"Perfumes Árabes Masculinos",description:"Badee al oud For Glory, fragancia masculina audaz."},
   {id:54,name:"LATTAFA BADEE AL OUD SUBLIME RED Edp 100ml",price:54999,discountPrice:52249.05,image:"/images/sublime-red.jpg",category:"Perfumes Árabes Masculinos",description:"Badee al oud Sublime Red, aroma intenso y sofisticado."},
   {id:55,name:"ODYSSEY MANDARÍN SKY Edp 100ml",price:59999,discountPrice:56999.05,image:"/images/mandarin-sky.jpg",category:"Perfumes Árabes Masculinos",description:"Odyssey Mandarín Sky, frescura cítrica y envolvente."},
-  {id:56,name:"LATTAFA ASAD BOURBON 100ml",price:73499,discountPrice:null,image:"/images/asad-bourbon.jpg",category:"Perfumes Árabes Masculinos",description:"Asad Bourbon de Lattafa, aroma amaderado y elegante."},
+  {id:56,name:"LATTAFA ASAD BOURBON 100ml",price:73499,discountPrice:73499,image:"/images/asad-bourbon.jpg",category:"Perfumes Árabes Masculinos",description:"Asad Bourbon de Lattafa, aroma amaderado y elegante."},
   {id:57,name:"Al haramain Amber oud Gold edition 75ml",price:79999,discountPrice:75999.05,image:"/images/amber-oud.jpg",category:"Perfumes Árabes Masculinos",description:"Amber Oud Gold Edition de Al Haramain, lujo en fragancia."},
   {id:58,name:"ODYSSEY DUBAI CHOCOLATE EDP 100ml",price:61999,discountPrice:58899.05,image:"/images/dubai-chocolate.jpg",category:"Perfumes Árabes Masculinos",description:"Odyssey Dubai Chocolate, fragancia dulce y exclusiva."},
   {id:60,name:"ARMAF CLUB DE NUIT WOMAN INTENSE 100ml Edp",price:59999,discountPrice:56999.05,image:"/images/cdn-woman.jpg",category:"Perfumes Árabes Femeninos",description:"Club de Nuit Woman Intense, fragancia femenina intensa."},
@@ -85,5 +85,6 @@ export const products: Product[] = [
   {id:78,name:"BOCA JUNIORS ALTERNATIVA 2026 Adidas Heatrdy",price:49999,discountPrice:47499.05,image:"/images/boca-alta.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Boca Juniors alternativa 2026 Adidas Heatrdy."},
   {id:79,name:"BOCA JUNIORS ALTERNATIVA 2026 Adidas Heatrdy Leandro Paredes #5",price:49999,discountPrice:47499.05,image:"/images/boca-alta-paredes.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Boca Juniors alternativa 2026 Paredes #5."},
   {id:80,name:"PARIS SAINT GERMAIN TITULAR 2026 Nike DRIFIT",price:49999,discountPrice:47499.05,image:"/images/psg.jpg",category:"Camisetas Versión Jugador",description:"Camiseta PSG titular 2026 Nike DRIFIT."},
-  {id:81,name:"BAYERN MÚNICH TITULAR 2025 Adidas Heatrdy Edición especial 125 años",price:49999,discountPrice:47499.05,image:"/images/bayern-125.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Bayern Múnich titular 2025 edición especial 125 años."}
+  {id:81,name:"BAYERN MÚNICH TITULAR 2025 Adidas Heatrdy Edición especial 125 años",price:49999,discountPrice:47499.05,image:"/images/bayern-125.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Bayern Múnich titular 2025 edición especial 125 años."},
+  {id:82,name:"Camiseta boca juniors paredes talle L",price:54999,discountPrice:54999,image:"/images/boca-paredes-l.jpg",category:"Camisetas Versión Jugador",description:"Camiseta Boca Juniors Paredes talle L."}
 ];
